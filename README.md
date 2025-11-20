@@ -1,9 +1,3 @@
-Aquí está un **README totalmente profesional**, pulido, ordenado, con buena redacción, formato empresarial y estilo moderno**, sin cambiar el contenido técnico de tu proyecto.
-
-Lo puedes copiar/pegar directamente como `README.md`.
-
----
-
 # 🌐 **Spam Classifier — Sistema de Autenticación + Clasificación de Mensajes (MFA & Passwordless)**
 
 Este proyecto es un **monorepositorio** que integra:
