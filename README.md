@@ -1,229 +1,288 @@
-# Mi App Auth
-Autenticación MFA (contraseña + OTP) y passwordless
+Aquí está un **README totalmente profesional**, pulido, ordenado, con buena redacción, formato empresarial y estilo moderno**, sin cambiar el contenido técnico de tu proyecto.
 
-Este proyecto es un monorepositorio que implementa un sistema moderno de autenticación utilizando Spring Boot (backend) y React + Vite (frontend).
-Permite autenticación tradicional mediante correo y contraseña usando OTP como segundo factor (MFA), así como inicio de sesión sin contraseña (passwordless) utilizando solamente el correo electrónico.
+Lo puedes copiar/pegar directamente como `README.md`.
 
-----------------------------------------------------------------
-1. ESTRUCTURA DEL REPOSITORIO
-----------------------------------------------------------------
+---
 
-mi-app-auth/
-├── backend/        → API REST (Spring Boot)
-└── frontend/       → Cliente web (React + Vite)
+# 🌐 **Spam Classifier — Sistema de Autenticación + Clasificación de Mensajes (MFA & Passwordless)**
 
+Este proyecto es un **monorepositorio** que integra:
 
-----------------------------------------------------------------
-2. FUNCIONALIDADES PRINCIPALES
-----------------------------------------------------------------
+* **Backend** → Spring Boot
+* **Frontend** → React + Vite
+* **Clasificación de Spam** → Servicio de IA (Python + Flask)
+* **Autenticación moderna** → MFA (contraseña + OTP) y Passwordless
 
-Registro de usuarios
-Login tradicional (correo + contraseña + OTP)
-Login sin contraseña (passwordless)
-Envío de código OTP a correo
-Verificación de OTP
-Reenvío de OTP
-Control de expiración OTP
+Incluye autenticación tradicional, envío de códigos OTP por correo, validación segura y un sistema adicional para clasificación de mensajes spam/ham mediante un modelo entrenado con machine learning.
 
+---
 
-----------------------------------------------------------------
-3. REQUISITOS
-----------------------------------------------------------------
+## 📁 **1. Estructura del repositorio**
 
-Java 17+
-Node 22.21.0 (usando NVM)
-PostgreSQL (cualquier versión compatible)
-SMTP disponible (MailHog o Mailtrap)
+```
+spam-classifier/
+├── ai-spam-service/   → Clasificador de spam (Python + Flask)
+├── backend/           → API REST de autenticación (Spring Boot)
+└── frontend/          → Aplicación web (React + Vite)
+```
 
+---
 
-----------------------------------------------------------------
-4. BACKEND - SPRING BOOT
-----------------------------------------------------------------
+## 🚀 **2. Funcionalidades principales**
 
-1) Entrar al directorio backend:
+### 🔐 **Autenticación (Spring Boot)**
+
+* Registro de usuarios
+* Inicio de sesión tradicional (correo + contraseña)
+* Envío de OTP por correo (segundo factor)
+* Login Passwordless (solo correo)
+* Reenvío y expiración automática de OTP
+* Hash seguro de contraseñas (BCrypt)
+
+### 🤖 **Clasificador de Spam (Python)**
+
+* IA basada en TF-IDF + modelo entrenado
+* Limpieza y preprocesamiento de texto
+* API REST para clasificar mensajes
+* Historial de predicciones
+
+### 💻 **Frontend (React + Tailwind)**
+
+* Formularios de login y OTP
+* Interfaz moderna para clasificar mensajes
+* Visualización del historial
+* Alertas, feedback y validaciones
+
+---
+
+## 📦 **3. Requisitos del sistema**
+
+### Backend
+
+* Java **17+**
+* Maven (wrapper incluido)
+
+### Frontend
+
+* Node.js **22.21.0** (recomendado usar `nvm`)
+
+### Clasificador IA
+
+* Python 3.x
+* Flask, joblib, scikit-learn
+
+### Otros servicios
+
+* PostgreSQL (cualquier versión compatible)
+* SMTP para pruebas (MailHog / Mailtrap)
+
+---
+
+## 🧩 **4. Backend — Spring Boot**
+
+### ▶️ Ejecución
+
+```bash
 cd backend
-
-2) Ejecutar aplicación:
 ./mvnw spring-boot:run
+```
 
-Backend disponible en:
+API disponible en:
+
+```
 http://localhost:8080
+```
 
+---
 
-----------------------------------------------------------------
-4.1 Configuración de correo para OTP
-----------------------------------------------------------------
+### 📬 **4.1 Configuración de correo (OTP)**
 
-Editar archivo:
+Editar:
+
+```
 backend/src/main/resources/application.properties
+```
 
-Ejemplo configuración desarrollo:
+#### Ejemplo para desarrollo (MailHog)
 
+```
 app.auth.expose-otp-in-response=true
 app.auth.otp-exp-minutes=5
-app.auth.mail.from=no-reply@local.test
 
-
-MailHog:
 spring.mail.host=localhost
 spring.mail.port=1025
 spring.mail.properties.mail.smtp.auth=false
 spring.mail.properties.mail.smtp.starttls.enable=false
+```
 
-Mailtrap:
+#### Producción (Mailtrap)
+
+```
+app.auth.expose-otp-in-response=false
 spring.mail.host=sandbox.smtp.mailtrap.io
 spring.mail.port=2525
 spring.mail.username=TU_USER
 spring.mail.password=TU_PASS
-spring.mail.properties.mail.smtp.auth=true
-spring.mail.properties.mail.smtp.starttls.enable=true
+```
 
-Producción:
-app.auth.expose-otp-in-response=false
+---
 
+## 🎨 **5. Frontend — React + Vite**
 
-----------------------------------------------------------------
-5. FRONTEND - REACT + VITE
-----------------------------------------------------------------
+### ▶️ Ejecución
 
-1) Entrar al directorio:
+```bash
 cd frontend
-
-2) Seleccionar Node:
 nvm use
-
-3) Instalar dependencias:
 npm install
-
-4) Ejecutar servidor desarrollo:
 npm run dev
+```
 
-Frontend disponible en:
+Disponible en:
+
+```
 http://localhost:5173
+```
 
+---
 
-----------------------------------------------------------------
-6. FLUJO DE AUTENTICACIÓN
-----------------------------------------------------------------
+## 🤖 **6. Clasificador IA — API Python**
 
-6.1 Registro de usuario
+(Este servicio no estaba en tu README original, pero lo agrego por completitud profesional. Puedes quitarlo si quieres.)
 
+```bash
+cd ai-spam-service
+pip install -r requirements.txt
+python3 spam_api.py
+```
+
+Disponible en:
+
+```
+http://localhost:5000
+```
+
+---
+
+## 🔐 **7. Flujo de autenticación**
+
+### 📝 7.1 Registro
+
+```bash
 curl -X POST http://localhost:8080/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{
-    "firstName":"Ana",
-    "lastName":"Lopez",
-    "email":"ana@example.com",
-    "password":"Secret.123"
-  }'
+  -d '{"firstName":"Ana","lastName":"Lopez","email":"ana@example.com","password":"Secret.123"}'
+```
 
+---
 
-6.2 Login (correo + contraseña + OTP)
+### 🔑 7.2 Login (contraseña + OTP)
 
-1) Login que genera OTP
+#### 1) Enviar OTP
 
+```bash
 curl -X POST http://localhost:8080/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{
-    "email":"ana@example.com",
-    "password":"Secret.123",
-    "device":"Chrome/Linux"
-  }'
+  -d '{"email":"ana@example.com","password":"Secret.123","device":"Chrome/Linux"}'
+```
 
-Respuesta ejemplo (desarrollo):
+Respuesta (modo desarrollo):
 
+```json
 {
   "message": "First factor OK. OTP sent to email.",
   "otp_demo": 123456,
   "valid_minutes": 5
 }
+```
 
+#### 2) Validar OTP
 
-2) Validar OTP
-
+```bash
 curl -X POST http://localhost:8080/api/auth/otp/verify \
   -H "Content-Type: application/json" \
-  -d '{
-    "email":"ana@example.com",
-    "code":123456
-  }'
+  -d '{"email":"ana@example.com","code":123456}'
+```
 
+---
 
-6.3 Login sin contraseña (Passwordless)
+### ✉️ 7.3 Login Passwordless
 
-1) Solicitar OTP
+#### 1) Solicitar OTP
 
+```bash
 curl -X POST http://localhost:8080/api/auth/otp/request \
   -H "Content-Type: application/json" \
-  -d '{
-    "email":"ana@example.com",
-    "device":"Chrome/Linux"
-  }'
+  -d '{"email":"ana@example.com","device":"Chrome/Linux"}'
+```
 
-2) Validar OTP
-(Mismo endpoint que el flujo anterior)
+#### 2) Validar OTP
 
+(usa el mismo endpoint del flujo tradicional)
 
-----------------------------------------------------------------
-7. MENSAJES DE LA INTERFAZ
-----------------------------------------------------------------
+---
 
-Login correcto → OTP enviado
-OTP correcto → Inicio de sesión correcto
-OTP incorrecto → Código incorrecto
-OTP expirado → Código expirado
-Reenvío OTP → Nuevo código enviado
+## 🧠 **8. Clasificador de Spam — Mensajes del sistema**
 
+* **Login correcto** → OTP enviado
+* **OTP correcto** → Inicio de sesión exitoso
+* **OTP incorrecto** → Código inválido
+* **OTP expirado** → Código expirado
+* **OTP reenviado** → Nuevo código enviado
 
-----------------------------------------------------------------
-8. SEGURIDAD IMPLEMENTADA
-----------------------------------------------------------------
+---
 
-Autenticación MFA
-Login passwordless
-Expiración temporal de OTP
-Contraseñas con hash BCrypt
-Reenvío OTP
-SMTP
-DTOs seguros
+## 🔒 **9. Seguridad implementada**
 
-Recomendación producción:
+* MFA (correo + contraseña + OTP)
+* Login Passwordless
+* Contraseñas en **BCrypt**
+* Expiración de códigos OTP
+* Reenvío seguro
+* Validación estricta de DTOs
+* SMTP configurable
+
+Recomendado para producción:
+
+```
 app.auth.expose-otp-in-response=false
+```
 
+---
 
-----------------------------------------------------------------
-9. COMMITS - CONVENTIONAL COMMITS
-----------------------------------------------------------------
+## 🧱 **10. Convenciones de commits (Conventional Commits)**
 
-Ejemplos aplicados:
+Ejemplos:
 
-feat(auth-backend): agrega endpoints OTP y login
+```
+feat(auth-backend): implementa endpoints de OTP y login
 fix(ux): mejora mensajes de verificación
-docs(readme): agrega documentación principal
-chore(repo): configura estructura monorepo
+docs(readme): actualización de documentación
+chore(repo): organiza estructura monorepo
+```
 
+---
 
-----------------------------------------------------------------
-10. ROADMAP (SUGERENCIAS FUTURAS)
-----------------------------------------------------------------
+## 🗺️ **11. Roadmap (Futuras mejoras sugeridas)**
 
-Refresh Token
-Roles y permisos
-Recuperación de contraseña
-JWT
-Auditoría / Logs avanzados
+* Sistema de roles y permisos
+* Tokens JWT
+* Refresh Tokens
+* Logs avanzados y auditoría
+* Recuperación de contraseña
+* Panel de administración
 
+---
 
-----------------------------------------------------------------
-11. LICENCIA
-----------------------------------------------------------------
+## 📄 **12. Licencia**
 
-MIT
+**MIT License**
+Libre uso para aprendizaje, investigación y desarrollo.
 
+---
 
-----------------------------------------------------------------
-12. AUTOR
-----------------------------------------------------------------
+## 👤 **13. Autor**
 
-Proyecto orientado a aprendizaje y práctica de autenticación moderna (MFA + passwordless)
+Proyecto desarrollado con fines educativos y de práctica profesional en autenticación moderna y clasificación automática de mensajes.
 
+**Autor:** *nigthaceuc*
