@@ -11,7 +11,7 @@ Incluye autenticación tradicional, envío de códigos OTP por correo, validaci�
 
 ---
 
-## 📁 **1. Estructura del repositorio**
+##  **1. Estructura del repositorio**
 
 ```
 spam-classifier/
@@ -22,9 +22,9 @@ spam-classifier/
 
 ---
 
-## 🚀 **2. Funcionalidades principales**
+##  **2. Funcionalidades principales**
 
-### 🔐 **Autenticación (Spring Boot)**
+###  **Autenticación (Spring Boot)**
 
 * Registro de usuarios
 * Inicio de sesión tradicional (correo + contraseña)
@@ -49,7 +49,7 @@ spam-classifier/
 
 ---
 
-## 📦 **3. Requisitos del sistema**
+## **3. Requisitos del sistema**
 
 ### Backend
 
@@ -72,9 +72,9 @@ spam-classifier/
 
 ---
 
-## 🧩 **4. Backend — Spring Boot**
+##  **4. Backend — Spring Boot**
 
-### ▶️ Ejecución
+###  Ejecución
 
 ```bash
 cd backend
@@ -89,7 +89,7 @@ http://localhost:8080
 
 ---
 
-### 📬 **4.1 Configuración de correo (OTP)**
+###  **4.1 Configuración de correo (OTP)**
 
 Editar:
 
@@ -121,9 +121,9 @@ spring.mail.password=TU_PASS
 
 ---
 
-## 🎨 **5. Frontend — React + Vite**
+## **5. Frontend — React + Vite**
 
-### ▶️ Ejecución
+###  Ejecución
 
 ```bash
 cd frontend
@@ -158,9 +158,9 @@ http://localhost:5000
 
 ---
 
-## 🔐 **7. Flujo de autenticación**
+##  **7. Flujo de autenticación**
 
-### 📝 7.1 Registro
+### 7.1 Registro
 
 ```bash
 curl -X POST http://localhost:8080/api/auth/register \
@@ -170,7 +170,7 @@ curl -X POST http://localhost:8080/api/auth/register \
 
 ---
 
-### 🔑 7.2 Login (contraseña + OTP)
+### 7.2 Login (contraseña + OTP)
 
 #### 1) Enviar OTP
 
@@ -200,7 +200,7 @@ curl -X POST http://localhost:8080/api/auth/otp/verify \
 
 ---
 
-### ✉️ 7.3 Login Passwordless
+###  7.3 Login Passwordless
 
 #### 1) Solicitar OTP
 
@@ -216,7 +216,7 @@ curl -X POST http://localhost:8080/api/auth/otp/request \
 
 ---
 
-## 🧠 **8. Clasificador de Spam — Mensajes del sistema**
+## **8. Clasificador de Spam — Mensajes del sistema**
 
 * **Login correcto** → OTP enviado
 * **OTP correcto** → Inicio de sesión exitoso
@@ -226,7 +226,7 @@ curl -X POST http://localhost:8080/api/auth/otp/request \
 
 ---
 
-## 🔒 **9. Seguridad implementada**
+##  **9. Seguridad implementada**
 
 * MFA (correo + contraseña + OTP)
 * Login Passwordless
@@ -244,7 +244,7 @@ app.auth.expose-otp-in-response=false
 
 ---
 
-## 🧱 **10. Convenciones de commits (Conventional Commits)**
+##  **10. Convenciones de commits (Conventional Commits)**
 
 Ejemplos:
 
@@ -257,7 +257,7 @@ chore(repo): organiza estructura monorepo
 
 ---
 
-## 🗺️ **11. Roadmap (Futuras mejoras sugeridas)**
+##  **11. Roadmap (Futuras mejoras sugeridas)**
 
 * Sistema de roles y permisos
 * Tokens JWT
@@ -268,14 +268,14 @@ chore(repo): organiza estructura monorepo
 
 ---
 
-## 📄 **12. Licencia**
+## **12. Licencia**
 
 **MIT License**
 Libre uso para aprendizaje, investigación y desarrollo.
 
 ---
 
-## 👤 **13. Autor**
+##  **13. Autor**
 
 Proyecto desarrollado con fines educativos y de práctica profesional en autenticación moderna y clasificación automática de mensajes.
 
