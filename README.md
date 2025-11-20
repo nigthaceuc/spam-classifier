@@ -33,14 +33,14 @@ spam-classifier/
 * Reenvío y expiración automática de OTP
 * Hash seguro de contraseñas (BCrypt)
 
-### 🤖 **Clasificador de Spam (Python)**
+###  **Clasificador de Spam (Python)**
 
 * IA basada en TF-IDF + modelo entrenado
 * Limpieza y preprocesamiento de texto
 * API REST para clasificar mensajes
 * Historial de predicciones
 
-### 💻 **Frontend (React + Tailwind)**
+###  **Frontend (React + Tailwind)**
 
 * Formularios de login y OTP
 * Interfaz moderna para clasificar mensajes
