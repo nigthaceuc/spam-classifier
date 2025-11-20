@@ -1,4 +1,4 @@
-# 🌐 **Spam Classifier — Sistema de Autenticación + Clasificación de Mensajes (MFA & Passwordless)**
+# **Spam Classifier — Sistema de Autenticación + Clasificación de Mensajes (MFA & Passwordless)**
 
 Este proyecto es un **monorepositorio** que integra:
 
@@ -140,7 +140,7 @@ http://localhost:5173
 
 ---
 
-## 🤖 **6. Clasificador IA — API Python**
+## **6. Clasificador IA — API Python**
 
 (Este servicio no estaba en tu README original, pero lo agrego por completitud profesional. Puedes quitarlo si quieres.)
 
